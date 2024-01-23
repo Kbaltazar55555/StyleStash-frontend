@@ -1,9 +1,18 @@
-import React from 'react'
+import { useState } from 'react';
+import SignupForm from '../../components/SignupForm/SignupForm';
+import LoginForm from '../../components/LoginForm/LoginForm';
 
 const Landing = () => {
-  return (
-    <div>Landing</div>
-  )
-}
+  const [isLoggingIn, setIsLoggingIn] = useState(true);
 
-export default Landing
+  return (
+    <div>
+      {isLoggingIn ? <LoginForm /> : <SignupForm />}
+      <button onClick={() => setIsLoggingIn(!isLoggingIn)}>
+        {isLoggingIn ? 'Sign Up' : 'Log In'}
+      </button>
+    </div>
+  );
+};
+
+export default Landing;
