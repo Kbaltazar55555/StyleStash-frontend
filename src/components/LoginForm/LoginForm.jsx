@@ -1,30 +1,39 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom'
-import styles from './LoginForm.css'
+
+import *  as authService from '../../services/authService'
 
 
 const LoginForm = props => {
   const navigate = useNavigate()
   const [formData, setFormData] = useState({ username: '', password: '' });
 
-  const handleChange = (e) => {
-    props.updateMessage('')
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+  const handleChange = e => {
+    if (props.updateMessage) {
+      props.updateMessage('')
+    }
+    setFormData({ ...formData, [e.target.name]: e.target.value })
   };
+  
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log('Login Form Data:', formData);
-  };
+  const handleSubmit = async e => {
+    e.preventDefault()
+    try {
+      await authService.login(formData)
+      props.handleSignupOrLogin()
+      navigate('/profile')
+    } catch (err) {
+      props.updateMessage(err.message)
+    }
+  }
 
   return (
     <form 
     autoComplete="off"
     onSubmit={handleSubmit}
-    className={styles.container}
     >
-      <div className={styles.inputContainer}>
-        <label htmlFor="email" className={styles.label}>Email:</label>
+      <div>
+        <label htmlFor="email">Email:</label>
         <input
           type="text"
           autoComplete='off'
@@ -35,8 +44,8 @@ const LoginForm = props => {
           placeholder="Enter your email"
         />
       </div>
-      <div className={styles.inputContainer}>
-        <label htmlFor="password" className={styles.label}>Password:</label>
+      <div>
+        <label htmlFor="password">Password:</label>
         <input
           type="password"
           autoComplete='off'
@@ -46,11 +55,13 @@ const LoginForm = props => {
           onChange={handleChange}
           placeholder="Enter your password"
         />
-      </div>
+    </div>
       <div>
-        <button className={styles.button}></button>
+        <button>Log In</button>
+        <Link to="profile">
+          <button>Cancel</button>
+        </Link>
       </div>
-      <button type="submit">Log In</button>
     </form>
   );
 };

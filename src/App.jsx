@@ -20,7 +20,12 @@ function App() {
     setUser(null)
     navigate('/')
   }
+  
+  function handleSignupOrLogin() {
+    setUser(authService.getUser()); 
+  }
 
+  
 
   return (
     <>
