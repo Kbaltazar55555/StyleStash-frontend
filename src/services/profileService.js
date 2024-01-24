@@ -1,16 +1,31 @@
+import axios from 'axios'
 import * as tokenService from './tokenService'
 
 // This is the base URL for our API
-const BASE_URL = `${process.env.REACT_APP_BACK_END_SERVER_URL}/api/profiles`
+const BASE_URL = `${import.meta.env.VITE_BACK_END_SERVER_URL}/StyleStash/profile`
 
-// This is the function that will get all the profiles
-async function getAllProfiles() {
-  // Fetch the data from the backend
-  const res = await fetch(BASE_URL, {
-    // This is the token that will be used to authenticate the user
-    headers: {'Authorization': `Bearer ${tokenService.getToken()}`}
-  })
-  return await res.json()
+//get profile
+async function getProfile() {
+    try {
+        const res = await axios.get(`${BASE_URL}/profile`, {
+            headers : {'Authorization':`Bearer ${tokenService.getToken()}`}
+        })
+        return res.data
+    } catch (error) {
+        console.error(err)
+        throw error
+    }
 }
 
-export { getAllProfiles }
+async function updateProfile(profileId, updatedProfileData){
+    try {
+       const res = await axios.put(`${BASE_URL}/updateProfile/${profileId}`, updatedProfileData, {
+           headers: {'Authorization': `Bearer ${tokenService.getToken()}`}
+       }) 
+    } catch (error) {
+        console.error(error)
+        throw error
+    }
+}
+
+export { getProfile, updateProfile }
