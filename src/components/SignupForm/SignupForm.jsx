@@ -85,7 +85,7 @@ const SignupForm = props => {
         id='passwordConf'
       />
     </div>
-    <div className='signup/cancel button'>
+    <div className='signupbutton'>
         <button disabled={isFormInvalid()}>
           Sign Up
         </button>

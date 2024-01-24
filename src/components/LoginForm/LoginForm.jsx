@@ -33,7 +33,6 @@ const LoginForm = props => {
     onSubmit={handleSubmit}
     >
       <div>
-        <label htmlFor="email">Email:</label>
         <input
           type="text"
           autoComplete='off'
@@ -45,7 +44,6 @@ const LoginForm = props => {
         />
       </div>
       <div>
-        <label htmlFor="password">Password:</label>
         <input
           type="password"
           autoComplete='off'
@@ -58,9 +56,6 @@ const LoginForm = props => {
     </div>
       <div>
         <button>Log In</button>
-        <Link to="profile">
-          <button>Cancel</button>
-        </Link>
       </div>
     </form>
   );
