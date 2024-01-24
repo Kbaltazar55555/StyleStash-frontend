@@ -24,9 +24,12 @@ function App() {
 
   return (
     <>
-      <NavBar />
+      <NavBar user={user} handleLogout={handleLogout} />
       <Routes>
-        <Route path="/" element={<Landing/>} />
+        <Route 
+        path="/" 
+        element={<Landing handleSignupOrLogin={handleSignupOrLogin}/>}
+        />
         <Route path="/profile" element={
           // <ProtectedRoute user={user}>
             <Profile />
