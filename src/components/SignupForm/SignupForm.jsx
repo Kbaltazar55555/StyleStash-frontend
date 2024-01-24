@@ -18,7 +18,7 @@ const SignupForm = () => {
       <input
         type="text"
         name="email"
-        value={formData.username}
+        value={formData.email || ''}
         onChange={handleChange}
         placeholder="Email"
       />

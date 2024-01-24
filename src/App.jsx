@@ -21,10 +21,6 @@ function App() {
     navigate('/')
   }
 
-  function handleSignupOrLogin() {
-    setUser(authService.getUser())
-  }
-
 
   return (
     <>
