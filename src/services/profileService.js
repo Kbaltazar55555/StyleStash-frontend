@@ -5,14 +5,14 @@ import * as tokenService from './tokenService'
 const BASE_URL = `${import.meta.env.VITE_BACK_END_SERVER_URL}/StyleStash/profile`
 
 //get profile
-async function getProfile() {
+async function getProfile(profileId) {
     try {
-        const res = await axios.get(`${BASE_URL}/profile`, {
+        const res = await axios.get(`${BASE_URL}/${profileId}`, {
             headers : {'Authorization':`Bearer ${tokenService.getToken()}`}
         })
         return res.data
     } catch (error) {
-        console.error(err)
+        console.error(error)
         throw error
     }
 }

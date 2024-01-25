@@ -7,7 +7,7 @@ const SignupForm = props => {
   const [formData, setFormData] = useState({   username: '',
   email: '',
   password: '',
-  passwordConf: '',
+  // passwordConf: '',
 });
 
   const handleChange = e => {
@@ -23,16 +23,16 @@ const SignupForm = props => {
     try {
       await authService.signup(formData)
       props.handleSignupOrLogin()
-      navigate('profile')
+      navigate('/profile')
     } catch (err) {
       props.updateMessage(err.message)
     }
   }
  
-  const { username, email, password, passwordConf } = formData
+  const { username, email, password } = formData
 
   const isFormInvalid = () => {
-    return !(username && email && password && password === passwordConf)
+    return !(username && email && password )
   }
 
   return (
@@ -72,17 +72,6 @@ const SignupForm = props => {
         onChange={handleChange}
         placeholder="password"
         id='password'
-      />
-    </div>
-    <div className='inputContainer'>
-      <input
-        type="passwordConf"
-        name="passwordConf"
-        autoComplete='off'
-        value={formData.passwordConf}
-        onChange={handleChange}
-        placeholder="passwordConf"
-        id='passwordConf'
       />
     </div>
     <div className='signupbutton'>

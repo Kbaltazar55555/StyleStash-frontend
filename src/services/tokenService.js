@@ -9,7 +9,20 @@ function getUserFromToken() {
     return token ? jwtDecode(token).user : null
 }
 
-//this is a helper function that will allow us to set the token
+function getProfileFromToken() {
+    const token = getToken()
+    if (token) {
+        const payload = jwtDecode(token)
+        return payload.profile
+    }
+}
+
+function getClosetFromToken() {
+    const token = getToken()
+    return token ? jwtDecode(token).closet : null
+}
+
+
 function setToken(token) {
     // set the token to local storage
     localStorage.setItem('token', token)
@@ -40,4 +53,4 @@ function removeToken() {
     localStorage.removeItem('token')
 }
 
-export { setToken, getUserFromToken, getToken, removeToken }
+export { setToken, getUserFromToken, getToken, removeToken, getProfileFromToken, getClosetFromToken}

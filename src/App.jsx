@@ -5,6 +5,7 @@ import Closet from './pages/Closet/Closet'
 import ItemDetails from './pages/ItemDetails/ItemDetails'
 import Landing from './pages/Landing/Landing'
 import Profile from './pages/Profile/Profile'
+import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute'
 import { useNavigate } from 'react-router-dom'
 
 import * as authService from './services/authService'
@@ -36,9 +37,9 @@ function App() {
         element={<Landing handleSignupOrLogin={handleSignupOrLogin}/>}
         />
         <Route path="/profile" element={
-          // <ProtectedRoute user={user}>
+          <ProtectedRoute user={user}>
             <Profile />
-          // </ProtectedRoute>
+          </ProtectedRoute>
         } />
         <Route path="/closet" element={
           // <ProtectedRoute user={user}>
