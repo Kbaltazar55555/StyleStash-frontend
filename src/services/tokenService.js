@@ -10,16 +10,27 @@ function getUserFromToken() {
 }
 
 function getProfileFromToken() {
-    const token = getToken()
+    const token = getToken();
     if (token) {
-        const payload = jwtDecode(token)
-        return payload.profile
+        const payload = jwtDecode(token);
+        console.log("Decoded Token Payload:", payload);
+        const profileId = payload.user.profile;
+        console.log("Profile ID from Token:", profileId);
+        return profileId;
     }
+    return null;
 }
 
+
 function getClosetFromToken() {
-    const token = getToken()
-    return token ? jwtDecode(token).closet : null
+    const token = getToken();
+    if (token) {
+        const payload = jwtDecode(token);
+        console.log("Decoded Token Payload:", payload);
+        const closetId = payload.user.closet;
+        console.log("Closet ID from Token:", closetId);
+        return closetId;
+    }
 }
 
 

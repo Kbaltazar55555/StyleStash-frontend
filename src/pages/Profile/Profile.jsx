@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { getProfileFromToken }  from '../../services/tokenService.js';
+import * as tokenService from '../../services/tokenService.js';
 import * as profileService from '../../services/profileService.js';
 
 const Profile = () => {
@@ -8,7 +8,7 @@ const Profile = () => {
   useEffect(() => {
 
     const getProfile = async () => {
-      const profileId = getProfileFromToken();
+      const profileId = tokenService.getProfileFromToken();
       if (profileId) {
         try {
           const profileData = await profileService.getProfile(profileId);
