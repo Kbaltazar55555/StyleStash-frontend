@@ -9,7 +9,31 @@ function getUserFromToken() {
     return token ? jwtDecode(token).user : null
 }
 
-//this is a helper function that will allow us to set the token
+function getProfileFromToken() {
+    const token = getToken();
+    if (token) {
+        const payload = jwtDecode(token);
+        console.log("Decoded Token Payload:", payload);
+        const profileId = payload.user.profile;
+        console.log("Profile ID from Token:", profileId);
+        return profileId;
+    }
+    return null;
+}
+
+
+function getClosetFromToken() {
+    const token = getToken();
+    if (token) {
+        const payload = jwtDecode(token);
+        console.log("Decoded Token Payload:", payload);
+        const closetId = payload.user.closet;
+        console.log("Closet ID from Token:", closetId);
+        return closetId;
+    }
+}
+
+
 function setToken(token) {
     // set the token to local storage
     localStorage.setItem('token', token)
@@ -40,4 +64,4 @@ function removeToken() {
     localStorage.removeItem('token')
 }
 
-export { setToken, getUserFromToken, getToken, removeToken }
+export { setToken, getUserFromToken, getToken, removeToken, getProfileFromToken, getClosetFromToken}
