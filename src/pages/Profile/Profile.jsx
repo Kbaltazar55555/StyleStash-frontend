@@ -1,9 +1,11 @@
 import { useState, useEffect } from 'react';
 import * as tokenService from '../../services/tokenService.js';
 import * as profileService from '../../services/profileService.js';
+import ProfileForm from '../../components/ProfileForm/ProfileForm.jsx';
 
 const Profile = () => {
-  const [profile, setProfile] = useState(null); // Initialize as null or {}
+  const [profile, setProfile] = useState(null); 
+  const [editing, setEditing] = useState(false)
 
   useEffect(() => {
 
@@ -23,16 +25,30 @@ const Profile = () => {
     getProfile();
   }, []);
 
+  const handleUpdate = async (updatedProfile) => {
+    try {
+      const profileId = tokenService.getProfileFromToken();
+      if (profileId)
+        await profileService.updateProfile(profileId, updatedProfile);
+        setProfile(updatedProfile);
+        setEditing(false);
+    }
+    catch (error) {
+      console.error('Error updating profile', error);
+    }
+  }
+
   
   return (
     <div>
       {profile ? (
-        console.log(profile),
         <div className='profile'>
           <h1>{profile.name}</h1>
           <h2>Location: {profile.location}</h2>
           <h2>Current Style: {profile.currentStyle}</h2>
           <h2>Influences: {profile.influences}</h2>
+          <button onClick={() => setEditing(true)}>Edit Profile</button>
+          {editing && <ProfileForm profile={profile} onUpdate={handleUpdate} />}
         </div>
       ) : (
         <h1>Loading Profile...</h1>
