@@ -23,7 +23,7 @@ const LoginForm = props => {
       props.handleSignupOrLogin()
       navigate('/profile')
     } catch (err) {
-      props.updateMessage(err.message)
+      props.updateMessage(err.message.data.err)
     }
   }
 
