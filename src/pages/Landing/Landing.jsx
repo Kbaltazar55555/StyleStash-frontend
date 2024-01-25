@@ -12,13 +12,13 @@ const Landing = () => {
 
   return (
     <div>
-      {isLoggingIn ? (
+      {currentForm ==='login' ? (
         <LoginForm message={message} setMessage={setMessage} />
       ) : (
         <SignupForm message={message} setMessage={setMessage} />
       )}
-      <button onClick={() => setIsLoggingIn(!isLoggingIn)}>
-        {isLoggingIn ? 'Sign Up' : 'Log In'}
+      <button onClick={toggleForm}>
+      {currentForm === 'login' ? 'Sign Up' : 'Log In'}
       </button>
     </div>
   );
