@@ -6,11 +6,14 @@ import *  as authService from '../../services/authService'
 
 const LoginForm = props => {
   const navigate = useNavigate()
-  const [formData, setFormData] = useState({ username: '', password: '' });
+  const [formData, setFormData] = useState({ 
+    email: '',
+    password: '' 
+  });
 
   const handleChange = e => {
-    if (props.updateMessage) {
-      props.updateMessage('')
+    if (props.setMessage) {
+      props.setMessage('')
     }
     setFormData({ ...formData, [e.target.name]: e.target.value })
   };
@@ -20,10 +23,10 @@ const LoginForm = props => {
     e.preventDefault()
     try {
       await authService.login(formData)
-      props.handleSignupOrLogin()
+      await props.handleSignupOrLogin()
       navigate('/profile')
     } catch (err) {
-      props.updateMessage(err.message.data.err)
+      props.setMessage(err.message)
     }
   }
 
@@ -36,9 +39,9 @@ const LoginForm = props => {
         <input
           type="text"
           autoComplete='off'
-          name="username"
-          id="username"
-          value={formData.username}
+          name="email"
+          id="email"
+          value={formData.email}
           onChange={handleChange}
           placeholder="Enter your email"
         />

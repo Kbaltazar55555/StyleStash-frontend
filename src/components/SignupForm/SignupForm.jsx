@@ -1,18 +1,16 @@
 import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import * as authService from '../../services/authService'
 
 const SignupForm = props => {
   const navigate = useNavigate()
-  const [formData, setFormData] = useState({   username: '',
-  email: '',
+  const [formData, setFormData] = useState({   email: '',
   password: '',
-  passwordConf: '',
 });
 
   const handleChange = e => {
-    if (props.updateMessage) {
-      props.updateMessage('')
+    if (props.setMessage) {
+      props.setMessage('')
     }
     setFormData({ ...formData, [e.target.name]: e.target.value })
   };
@@ -22,17 +20,17 @@ const SignupForm = props => {
     e.preventDefault()
     try {
       await authService.signup(formData)
-      props.handleSignupOrLogin()
+      await props.handleSignupOrLogin()
       navigate('profile')
     } catch (err) {
-      props.updateMessage(err.message)
+      props.setMessage(err.message)
     }
   }
  
-  const { username, email, password, passwordConf } = formData
+  const { name, email, password } = formData
 
   const isFormInvalid = () => {
-    return !(username && email && password && password === passwordConf)
+    return !(name && email && password)
   }
 
   return (
@@ -44,12 +42,12 @@ const SignupForm = props => {
     <div className='inputContainer'>
       <input
         type="text"
-        name="username"
+        name="name"
         autoComplete='off'
-        value={formData.username || ''}
+        value={formData.name || ''}
         onChange={handleChange}
-        placeholder="username"
-        id='username'
+        placeholder="name"
+        id='name'
       />
     </div>
     <div className='inputContainer'>
@@ -72,17 +70,6 @@ const SignupForm = props => {
         onChange={handleChange}
         placeholder="password"
         id='password'
-      />
-    </div>
-    <div className='inputContainer'>
-      <input
-        type="passwordConf"
-        name="passwordConf"
-        autoComplete='off'
-        value={formData.passwordConf}
-        onChange={handleChange}
-        placeholder="passwordConf"
-        id='passwordConf'
       />
     </div>
     <div className='signupbutton'>
