@@ -21,11 +21,10 @@ const LoginForm = props => {
 
   const handleSubmit = async e => {
     e.preventDefault();
-    console.log("Logging in with:", formData); // Add this line to log formData
+    console.log("Logging in with:", formData); 
     try {
       await authService.login(formData);
       props.handleSignupOrLogin();
-      navigate('/profile');
     } catch (err) {
       props.setMessage(err.message);
     }

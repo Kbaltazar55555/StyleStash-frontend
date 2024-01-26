@@ -23,7 +23,10 @@ function App() {
   }
   
   function handleSignupOrLogin() {
-    setUser(authService.getUser()); 
+    const updatedUser = authService.getUser(); 
+    console.log("User after signup/login:", updatedUser); 
+    setUser(updatedUser);
+    navigate('/profile');
   }
 
   
@@ -36,20 +39,21 @@ function App() {
         path="/" 
         element={<Landing handleSignupOrLogin={handleSignupOrLogin}/>}
         />
+
         <Route path="/profile" element={
           <ProtectedRoute user={user}>
             <Profile />
           </ProtectedRoute>
         } />
         <Route path="/closet" element={
-          // <ProtectedRoute user={user}>
+           <ProtectedRoute user={user}>
             <Closet />
-          // </ProtectedRoute>
+           </ProtectedRoute>
         } />
         <Route path="/itemdetails/:id" element={
-          // <ProtectedRoute user={user}>
+           <ProtectedRoute user={user}>
             <ItemDetails />
-          // </ProtectedRoute>
+           </ProtectedRoute>
         } />
       </Routes>
     </>

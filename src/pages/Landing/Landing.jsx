@@ -2,7 +2,7 @@ import { useState } from 'react';
 import SignupForm from '../../components/SignupForm/SignupForm';
 import LoginForm from '../../components/LoginForm/LoginForm';
 
-const Landing = () => {
+const Landing = ({ handleSignupOrLogin }) => {
   const [message, setMessage] = useState('');
   const [currentForm, setcurrentForm] = useState('login'); // Tracks the current form
 
@@ -13,9 +13,17 @@ const Landing = () => {
   return (
     <div>
       {currentForm ==='login' ? (
-        <LoginForm message={message} setMessage={setMessage} />
+        <LoginForm 
+        message={message} 
+        setMessage={setMessage}
+        handleSignupOrLogin={handleSignupOrLogin}
+        />
       ) : (
-        <SignupForm message={message} setMessage={setMessage} />
+        <SignupForm 
+        message={message} 
+        setMessage={setMessage} 
+        handleSignupOrLogin={handleSignupOrLogin}
+        />
       )}
       <button onClick={toggleForm}>
       {currentForm === 'login' ? 'Sign Up' : 'Log In'}
