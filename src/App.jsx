@@ -23,9 +23,10 @@ function App() {
   }
   
   function handleSignupOrLogin() {
-    setUser(authService.getUser()); 
+    const updatedUser = authService.getUser(); 
     console.log("User after signup/login:", updatedUser); 
     setUser(updatedUser);
+    navigate('/profile');
   }
 
   
@@ -38,7 +39,6 @@ function App() {
         path="/" 
         element={<Landing handleSignupOrLogin={handleSignupOrLogin}/>}
         />
-        <Route path="/profile" element={<Profile />} />
 
         <Route path="/profile" element={
           <ProtectedRoute user={user}>
