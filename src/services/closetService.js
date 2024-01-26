@@ -42,16 +42,24 @@ async function getByCategory(closetId, category) {
     }
 }
 
-async function addItem () {
+async function addItem (formData, closetId) {
     try {
-        const res = await axios.post(`${BASE_URL}/addItem`, {
-            headers : {'Authorization':`Bearer ${tokenService.getToken()}`}
-        })
-        return res.data
+        // Assuming formData is an object and you need to add closetId to it
+        const dataToSend = {
+            ...formData,
+            // closetId: closetId
+        };
+        console.log(dataToSend)
+
+        const res = await axios.post(`${BASE_URL}/${closetId}/addItem`, dataToSend, {
+            headers: {'Authorization': `Bearer ${tokenService.getToken()}`}
+        });
+        return res.data;
     } catch (error) {
-        console.error(err)
-        throw error
+        console.error(error);
+        throw error;
     }
 }
 
-export {getCloset, addCloset, getByCategory}
+
+export {getCloset, addCloset, getByCategory, addItem}
