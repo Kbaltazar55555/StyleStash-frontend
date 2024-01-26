@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import * as closetService from '../../services/closetService.js'
+import * as tokenService from '../../services/tokenService.js'
 
 const AddItemModal = ({ show, onClose }) => {
   const [formData, setFormData] = useState({
@@ -9,6 +11,7 @@ const AddItemModal = ({ show, onClose }) => {
     brand: '',
     wearCount: '',
     notes: '',
+    imageUrl: '',
   });
 
   // Define options for category and wearcount
@@ -21,11 +24,17 @@ const AddItemModal = ({ show, onClose }) => {
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    const closetId = tokenService.getClosetFromToken()
 
-
-  }
+    try {
+      await closetService.addItem(formData, closetId); 
+      onClose();
+    } catch (error) {
+      console.error('Error adding item:', error);
+    }
+  };
 
   return (
     <div className={`modal ${show ? 'show' : 'hide'}`}>
@@ -117,8 +126,17 @@ const AddItemModal = ({ show, onClose }) => {
               value={formData.notes}
               onChange={handleInputChange}
             />
-            <button type='submit'>Add Item</button>
           </div>
+          <div className='form-data'>
+            <label htmlFor='imageUrl'>Image Url:</label>
+            <textarea
+              name='imageUrl'
+              id='imageUrl'
+              value={formData.imageUrl}
+              onChange={handleInputChange}
+            />
+          </div>
+          <button type='submit'>Add Item</button>
         </form>
         <button onClick={onClose}>Close</button>
       </div>
