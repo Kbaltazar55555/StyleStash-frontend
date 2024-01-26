@@ -1,11 +1,12 @@
 import axios from "axios";
 import * as tokenService from "./tokenService";
 
+
 // This is the base URL for our API
 const BASE_URL = `${import.meta.env.VITE_BACK_END_SERVER_URL}/StyleStash/closet`;
 
 //get closet
-async function getCloset() {
+async function getCloset(closetId) {
     try {
         const res = await axios.get(`${BASE_URL}/${closetId}`, {
             headers : {'Authorization':`Bearer ${tokenService.getToken()}`}
@@ -29,4 +30,28 @@ async function addCloset() {
     }
 }
 
-export {getCloset, addCloset}
+async function getByCategory(closetId, category) {
+    try {
+        const res = await axios.get(`${BASE_URL}/${closetId}/${category}`, {
+            headers : {'Authorization':`Bearer ${tokenService.getToken()}`}
+        })
+        return res.data
+    } catch (error) {
+        console.error(error)
+        throw error
+    }
+}
+
+async function addItem () {
+    try {
+        const res = await axios.post(`${BASE_URL}/addItem`, {
+            headers : {'Authorization':`Bearer ${tokenService.getToken()}`}
+        })
+        return res.data
+    } catch (error) {
+        console.error(err)
+        throw error
+    }
+}
+
+export {getCloset, addCloset, getByCategory}

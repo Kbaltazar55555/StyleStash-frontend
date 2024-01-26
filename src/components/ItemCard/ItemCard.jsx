@@ -1,9 +1,13 @@
-import React from 'react'
+import React from 'react';
+import './ItemCard.css'
 
-const ItemCard = () => {
+const ItemCard = ({ item, handleItemSelect }) => {
   return (
-    <div>ItemCard</div>
-  )
-}
+    <div className='item-card' onClick={() => handleItemSelect(item._id)}>
+      <h1>{item.type}</h1>
+      <h1>{item.brand}</h1>
+    </div>
+  );
+};
 
-export default ItemCard
+export default ItemCard;
