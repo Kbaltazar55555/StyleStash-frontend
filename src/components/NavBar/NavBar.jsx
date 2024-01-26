@@ -1,28 +1,35 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import './NavBar.css'; 
 
 const NavBar = ({ user, handleLogout }) => {
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+
+  const toggleDropdown = () => {
+    setDropdownOpen(!dropdownOpen);
+  };
+
   return (
     <>
+      <button className="dropdownButton" onClick={toggleDropdown}>☰ Menu</button>
       {user ?
-        <nav>
+        <nav className={dropdownOpen ? "show" : ""}>
           <ul>
-            <li><Link to="/profile">Profiles</Link></li>
+            <li><Link to="/profile">Profile</Link></li>
             <li><Link to="/closet">Closet</Link></li>
             <li><Link to="/settings">Settings</Link></li>
             <li><Link to="" onClick={handleLogout}>LOG OUT</Link></li>
           </ul>
         </nav>
       :
-        <nav>
+        <nav className={dropdownOpen ? "show" : ""}>
           <ul>
             <li><Link to="/">Home</Link></li>
           </ul>
         </nav>
       }
     </>
-  )
-}
+  );
+};
 
-export default NavBar
+export default NavBar;
