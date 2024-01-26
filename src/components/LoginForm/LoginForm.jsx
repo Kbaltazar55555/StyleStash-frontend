@@ -24,8 +24,9 @@ const LoginForm = props => {
     console.log("Logging in with:", formData); // Add this line to log formData
     try {
       await authService.login(formData);
-      props.handleSignupOrLogin();
       navigate('/profile');
+      props.handleSignupOrLogin();
+      console.log("Navigated to profile");
     } catch (err) {
       props.setMessage(err.message);
     }

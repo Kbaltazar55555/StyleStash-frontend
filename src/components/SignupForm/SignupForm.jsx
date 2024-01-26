@@ -22,8 +22,8 @@ const SignupForm = props => {
     e.preventDefault()
     try {
       await authService.signup(formData)
+      navigate('/profile')
       props.handleSignupOrLogin()
-      navigate('profile')
     } catch (err) {
       props.setMessage(err.message)
     }
