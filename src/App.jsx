@@ -50,7 +50,7 @@ function App() {
             <Closet />
            </ProtectedRoute>
         } />
-        <Route path="/itemdetails/:id" element={
+        <Route path="/items/:itemId" element={
            <ProtectedRoute user={user}>
             <ItemDetails />
            </ProtectedRoute>
