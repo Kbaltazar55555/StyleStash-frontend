@@ -1,9 +1,7 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom'
 import * as authService from '../../services/authService'
 
 const SignupForm = props => {
-  const navigate = useNavigate()
   const [formData, setFormData] = useState({
     username: '',
     email: '',
@@ -12,21 +10,32 @@ const SignupForm = props => {
 
   const handleChange = e => {
     if (props.setMessage) {
-      props.setMessage('')
+      props.setMessage('');
     }
-    setFormData({ ...formData, [e.target.name]: e.target.value })
+    const { name, value } = e.target;
+    setFormData({
+      ...formData, 
+      [name]: name === 'email' ? value.toLowerCase() : value
+    });
   };
+  
 
 
   const handleSubmit = async e => {
-    e.preventDefault()
+    e.preventDefault();
+    const submissionData = {
+      ...formData,
+      email: formData.email.toLowerCase(),
+    };
+  
     try {
-      await authService.signup(formData)
-      props.handleSignupOrLogin()
+      await authService.signup(submissionData);
+      props.handleSignupOrLogin();
     } catch (err) {
-      props.setMessage(err.message)
+      props.setMessage(err.message);
     }
   }
+  
 
   const { username, email, password } = formData
 
