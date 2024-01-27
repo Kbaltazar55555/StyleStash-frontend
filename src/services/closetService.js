@@ -61,5 +61,20 @@ async function addItem (formData, closetId) {
     }
 }
 
+const deleteItem = async (itemId) => {
+    try {
+        // Step 1: Send a DELETE request to the backend endpoint
+        await axios.delete(`${BASE_URL}/deleteItem/${itemId}`, {
+            headers: {'Authorization': `Bearer ${tokenService.getToken()}`}
+        });
 
-export {getCloset, addCloset, getByCategory, addItem}
+        // Step 2: Handle response and update state
+        setClosetItems(closetItems.filter(item => item._id !== itemId));
+    } catch (error) {
+        console.error(error);
+        // Step 3: Error handling
+    }
+};
+
+
+export {getCloset, addCloset, getByCategory, addItem, deleteItem}

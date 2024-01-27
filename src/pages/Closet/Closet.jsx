@@ -32,6 +32,20 @@ const Closet = () => {
     }
   };
 
+  const deleteItem = async (itemId) => {
+    try {
+      await closetService.deleteItem(itemId);
+      const closetId = tokenService.getClosetFromToken();
+      const closetData = await closetService.getCloset(closetId);
+      setCloset(closetData);
+      setClosetItems(closetData.items);
+
+      window.location.reload();
+    } catch (error) {
+      console.error('Error deleting item', error);
+    }
+  }
+
   useEffect(() => {
     const getCloset = async () => {
       const closetId = tokenService.getClosetFromToken();
@@ -52,7 +66,7 @@ const Closet = () => {
   }, []);
 
   const navigateToItemDetails = (itemId) => {
-    navigate(`/item-details/${itemId}`);
+    navigate(`/items/${itemId}`);
   };
 
   const handleAddItemButtonClick = () => {
@@ -85,6 +99,7 @@ const Closet = () => {
                 key={item._id}
                 item={item}
                 handleItemSelect={() => navigateToItemDetails(item._id)}
+                handleDelete={() => deleteItem(item._id)}
               />
             ))}
           </div>

@@ -1,41 +1,19 @@
 import axios from "axios";
-import * as tokenService from "./tokenService";
+import * as tokenService from "./tokenService.js"
 
 
-const BASE_URL = `${import.meta.env.VITE_BACK_END_SERVER_URL}/StyleStash/item`;
+const BASE_URL = `${import.meta.env.VITE_BACK_END_SERVER_URL}/StyleStash/items`;
 
-async function getItems() {
-    try {
-        const res = await axios.get(`${BASE_URL}/`, {
-            headers : {'Authorization':`Bearer ${tokenService.getToken()}`}
-        })
-        return res.data
-    } catch (error) {
-        console.error(err)
-        throw error
-    }
-}
 
-async function getOneItem(itemId) {
+async function getItem(itemId) {
+
     try {
         const res = await axios.get(`${BASE_URL}/${itemId}`, {
             headers : {'Authorization':`Bearer ${tokenService.getToken()}`}
         })
         return res.data
     } catch (error) {
-        console.error(err)
-        throw error
-    }
-}
-
-async function addItem(itemData) {
-    try {
-        const res = await axios.post(`${BASE_URL}/item`, itemData, {
-            headers : {'Authorization':`Bearer ${tokenService.getToken()}`}
-        })
-        return res.data
-    } catch (error) {
-        console.error(err)
+        console.error(error)
         throw error
     }
 }
@@ -51,13 +29,6 @@ async function updateItem(itemId, updatedItemData){
     }
 }
 
-async function deleteItem(itemId){
-    try {
-        const res = await axios.delete(`${BASE_URL}/deleteItem/${itemId}`, {
-            headers: {'Authorization': `Bearer ${tokenService.getToken()}`}
-        })
-    } catch (error) {
-        console.error(error)
-        throw error
-    }
-}
+
+
+export { getItem, updateItem }
