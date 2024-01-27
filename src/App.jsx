@@ -11,6 +11,7 @@ import { useNavigate } from 'react-router-dom'
 import * as authService from './services/authService'
 
 import './App.css'
+import VideoBackground from './VideoBackground' // Make sure the path to this component is correct
 
 function App() {
   const navigate = useNavigate()
@@ -23,37 +24,33 @@ function App() {
   }
   
   function handleSignupOrLogin() {
-    const updatedUser = authService.getUser(); 
-    console.log("User after signup/login:", updatedUser); 
-    setUser(updatedUser);
-    navigate('/profile');
+    setUser(authService.getUser())
+    navigate('/profile')
   }
-
   
-
   return (
     <>
+      <VideoBackground /> {/* This will render the video background on all pages */}
       <NavBar user={user} handleLogout={handleLogout} />
       <Routes>
         <Route 
-        path="/" 
-        element={<Landing handleSignupOrLogin={handleSignupOrLogin}/>}
+          path="/" 
+          element={<Landing handleSignupOrLogin={handleSignupOrLogin}/>}
         />
-
         <Route path="/profile" element={
           <ProtectedRoute user={user}>
             <Profile />
           </ProtectedRoute>
         } />
         <Route path="/closet" element={
-           <ProtectedRoute user={user}>
+          <ProtectedRoute user={user}>
             <Closet />
-           </ProtectedRoute>
+          </ProtectedRoute>
         } />
-        <Route path="/items/:itemId" element={
-           <ProtectedRoute user={user}>
+        <Route path="/itemdetails/:id" element={
+          <ProtectedRoute user={user}>
             <ItemDetails />
-           </ProtectedRoute>
+          </ProtectedRoute>
         } />
       </Routes>
     </>
