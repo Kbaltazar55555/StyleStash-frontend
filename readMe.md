@@ -9,10 +9,6 @@ Kenneth, Wyatt, Antwon, Kia
 # Technology Stack
 React.js for building the user interface
 CSS and potentially a framework like Bootstrap or Tailwind for styling
-JWT-decode
-vite
-eslint
-axios
 
 # Installation
 To set up the front-end environment:
