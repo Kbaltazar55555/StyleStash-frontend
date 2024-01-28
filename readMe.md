@@ -1,5 +1,7 @@
 ## StyleStash Front-End
 
+
+
 # Overview
 StyleStash is an interactive, user-friendly application for managing a virtual closet. It combines a sleek UI with powerful features for organizing and visualizing clothing items.
 
@@ -9,6 +11,12 @@ Kenneth, Wyatt, Antwon, Kia
 # Technology Stack
 React.js for building the user interface
 CSS and potentially a framework like Bootstrap or Tailwind for styling
+
+# Attributions: 
+React Documentation 
+Homework labs
+Notion 
+ChatGPT
 
 # Installation
 To set up the front-end environment:
@@ -62,3 +70,25 @@ Regularly sync your branches with your main repository branch. Best practice to 
 # Daily Meetings
 Morning check-ins with Emre and mid-day check-ins with the team.
 Office meetings with Grant as needed.
+
+# Next Steps
+Favoriting an item 
+User profile containing a budget attribute 
+Category / item drill down
+
+# Resources from proposal 
+
+##  Trello 
+https://trello.com/b/58cc5LD5/style-stash
+
+## Wire Frames
+<img width="1105" alt="Screenshot 2024-01-21 at 4 35 48 PM" src="https://github.com/Kdrummmond625/StyleStash-frontend/assets/150689031/b43ac2e2-0451-4bd4-adc2-651be975ddd1">
+
+## ERD
+<img width="1206" alt="Screenshot 2024-01-21 at 4 37 15 PM" src="https://github.com/Kdrummmond625/StyleStash-frontend/assets/150689031/06eadd2d-b95f-4cbc-8445-1033141778d0">
+
+## Component Hierarchy Diagram
+<img width="1170" alt="Screenshot 2024-01-21 at 7 57 51 PM" src="https://github.com/Kdrummmond625/StyleStash-frontend/assets/150689031/1a7ae612-82da-4252-886e-0b0f94a9b8b9">
+
+## Miro Board
+https://miro.com/app/board/uXjVN3IAJTM=/

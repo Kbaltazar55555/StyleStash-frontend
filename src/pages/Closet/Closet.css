@@ -1,56 +1,3 @@
-/* Closet.css */
-/*
-.closet {
-    padding: 20px;
-    background-color: #f5f5f5;
-  }
-  
-  h1 {
-    font-size: 24px;
-    margin-bottom: 20px;
-  }
-  
-  .category-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-  }
-  
-  .selected-category {
-    background-color: #fff;
-    border: 1px solid #ccc;
-    padding: 20px;
-    margin-top: 20px;
-  }
-  
-  .selected-category h2 {
-    font-size: 20px;
-    margin-bottom: 10px;
-  }
-  
-  .selected-category button {
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
-  }
-  
-  .selected-category button:hover {
-    background-color: #0056b3;
-  }
-  
-  .closet-items {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 20px;
-  }
-  */
-  /* Add more styles as needed */
-
-  /* Closet Page Styles */
-/* Closet Page Styles */
-
 body {
     background-image: url('/images/projectimage3.jpeg');
     background-size: cover;
@@ -58,37 +5,41 @@ body {
     background-attachment: fixed;
 }
 
-
 .closet {
-    background-color: transparent;
-    color: var(--dark-charcoal);
+    background-color: rgba(255, 255, 255, 0.8); /* Light background for readability */
+    color: rgb(35, 35, 35); /* Dark Charcoal */
     padding: 20px;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
-    font-family: 'Montserrat', sans-serif; /* Updated font */
+    font-family: 'Montserrat', sans-serif;
 }
 
 .closet h1 {
-    color: var(--deep-brown-hardwood);
+    background-color: rgba(210, 180, 140, 0.8); /* Light Brown Tan for container */
+    color: rgb(83, 42, 22); /* Deep Brown Hardwood */
     margin-bottom: 30px;
-    font-weight: 700; /* Bold font for headings */
+    font-weight: 700;
+    padding: 10px;
+    border-radius: 5px;
 }
+
 /* Button Styling */
 .closet button, .selected-category button {
-    background-color: var(--natural-green);
-    color: var(--white);
-    border: 2px solid var(--deep-brown-hardwood);
+    background-color: rgb(106, 142, 35); /* Natural Green */
+    color: rgb(255, 255, 255); /* White */
+    border: 2px solid rgb(83, 42, 22); /* Deep Brown Hardwood */
     padding: 10px 20px;
     cursor: pointer;
     margin: 10px;
     display: inline-block;
+    border-radius: 5px;
 }
 
 .closet button:hover, .selected-category button:hover {
-    background-color: var(--light-brown-tan);
-    border-color: var(--dark-charcoal);
+    background-color: rgb(210, 180, 140); /* Light Brown Tan */
+    border-color: rgb(35, 35, 35); /* Dark Charcoal */
 }
 
 /* Category List Styles */
@@ -103,7 +54,7 @@ body {
 
 /* Selected Category Styles */
 .selected-category h2 {
-    color: var(--deep-brown-hardwood);
+    color: rgb(83, 42, 22); /* Deep Brown Hardwood */
     margin-bottom: 20px;
 }
 
@@ -111,11 +62,6 @@ body {
     width: 100%;
     text-align: center;
 }
-
-/* Individual Button Styling Inside Category List */
-
-    /* Inherits styles from .closet button */
-
 
 /* Closet Items Grid */
 .closet-items {
@@ -128,13 +74,12 @@ body {
 
 /* Individual Item Card Styles */
 .item-card {
-    border: 2px solid var(--light-brown-tan);
+    border: 2px solid rgb(210, 180, 140); /* Light Brown Tan */
     padding: 10px;
-    background-color: var(--white);
+    background-color: rgb(255, 255, 255); /* White */
+    border-radius: 5px;
 }
 
 .item-card:hover {
-    border-color: var(--deep-brown-hardwood);
+    border-color: rgb(83, 42, 22); /* Deep Brown Hardwood */
 }
-
-
