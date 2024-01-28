@@ -5,7 +5,7 @@ import { useParams } from 'react-router-dom'
 
 
 
-import ItemDeets from '../../components/ItemDeets/ItemDeets.jsx'
+import ItemDeets from '../../components/ItemModal/ItemModal.jsx'
 import * as tokenService from '../../services/tokenService.js'
 import * as itemService from '../../services/itemService.js'
 
