@@ -48,3 +48,40 @@ overflow: hidden;
         display: block; 
     }
 }
+
+/* Main color theme for the App */
+:root {
+    --deep-brown-hardwood: #5C4033; /* Primary Color: Deep Brown Hardwood */
+    --off-white: #F5F5F5;          /* Secondary Color: Off-White */
+    --white: #FFFFFF;              /* Accent Color: White */
+    --light-brown-tan: #D2B48C;    /* Accent Color: Light Brown/Tan */
+    --dark-charcoal: #36454F;      /* Additional Accent: Dark Charcoal */
+    --natural-green: #556B2F;      /* Additional Accent: Natural Green */
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: var(--off-white);
+    color: var(--dark-charcoal);
+}
+
+a {
+    color: var(--natural-green);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+button {
+    background-color: var(--deep-brown-hardwood);
+    color: var(--white);
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: var(--light-brown-tan);
+}
